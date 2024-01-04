@@ -10,7 +10,6 @@ import logging
 import numpy as np
 import pandas as pd
 import nibabel as nib
-import nibabel.gifti.giftiio
 
 from ciftify.utils import run, get_stdout, TempDir
 
@@ -267,7 +266,7 @@ def get_surf_distances(surf, orig_vertex, radius_search=100,
 
 def load_surf_coords(surf):
     '''load the coordinates from a surface file'''
-    coords = nibabel.gifti.giftiio.read(surf).getArraysFromIntent('NIFTI_INTENT_POINTSET')[0].data
+    coords = nibabel.load(surf).getArraysFromIntent('NIFTI_INTENT_POINTSET')[0].data
     return coords
 
 
@@ -281,7 +280,7 @@ def load_hemisphere_labels(filename, wb_structure, map_number = 1):
             '-label', wb_structure, labels_gii])
 
         # loads label table as dict and data as numpy array
-        gifti_img = nibabel.gifti.giftiio.read(labels_gii)
+        gifti_img = nibabel.load(labels_gii)
         atlas_data = gifti_img.getArraysFromIntent('NIFTI_INTENT_LABEL')[map_number - 1].data
 
         atlas_dict = gifti_img.get_labeltable().get_labels_as_dict()
