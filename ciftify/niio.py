@@ -113,7 +113,7 @@ def load_nifti(filename):
                         """)
 
     # load in nifti and reshape to 2D
-    nifti = nifti.get_data()
+    nifti = nifti.get_fdata()
     if len(dims) == 3:
         dims.append(1)
     nifti = nifti.reshape(dims[0]*dims[1]*dims[2], dims[3])
