@@ -116,13 +116,13 @@ def calc_nifti(inputfile, maskfile, min_low_freq, max_low_freq, min_total_freq, 
     '''
     # Load in functional data
     func_img = nib.load(inputfile)
-    func_data = func_img.get_data()
+    func_data = func_img.get_fdata()
 
     # If given input of mask, load in mask file
     # OR if not given input of mask, create mask using std
     if maskfile:
         #1. Given input of mask file
-        mask = (nib.load(maskfile)).get_data()
+        mask = (nib.load(maskfile)).get_fdata()
     else:
         #2. Manually create mask
         mask = np.std(func_data, axis=3)

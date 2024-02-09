@@ -4,7 +4,7 @@ import os.path
 import sys
 
 
-VERSION='2.3.3'
+VERSION='3.0.0+FCPINDI'
 
 here = os.path.abspath(os.path.dirname(__file__))
 
